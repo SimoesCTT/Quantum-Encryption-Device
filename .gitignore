@@ -1,0 +1,40 @@
+# Quantum Encryption Device - Build Artifacts
+# Copyright (C) 2025 Americo Simoes
+
+# Build directories
+bin/
+obj/
+lib/
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.tar.gz
+*.zip
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+*.code-workspace
+
+# Test files
+test_*
+*.test
+
+# Temporary files
+*.tmp
+*.bak
+*.old
