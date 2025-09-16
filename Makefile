@@ -156,5 +156,33 @@ package: clean
 	tar czf qed-2.0.0-src.tar.gz --exclude='.git*' --exclude='*.tar.gz' .
 	@echo "✅ Source package created: qed-2.0.0-src.tar.gz"
 
+# Build evaluation version (30-day expiry)
+eval: CFLAGS += -DQED_EVALUATION_VERSION
+eval: $(BINDIR)/$(TARGET)-eval $(LIBDIR)/$(LIBRARY) $(LIBDIR)/$(SHARED_LIB)
+
+# Evaluation executable (includes quantum_evaluation.o in OBJECTS)
+$(BINDIR)/$(TARGET)-eval: $(OBJECTS) | $(BINDIR)
+	@echo "Building evaluation executable $@..."
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+	@echo "✅ Built QED Evaluation Version (30-day trial): $@"
+
+# Create evaluation distribution package
+eval-package: eval
+	@echo "Creating evaluation distribution package..."
+	mkdir -p qed-evaluation-dist/{bin,docs}
+	cp $(BINDIR)/$(TARGET)-eval qed-evaluation-dist/bin/qed-eval
+	cp LICENSE COPYRIGHT qed-evaluation-dist/docs/
+	echo "QED EVALUATION VERSION - 30 DAY TRIAL" > qed-evaluation-dist/docs/README-EVALUATION.txt
+	echo "This version expires 30 days after compilation." >> qed-evaluation-dist/docs/README-EVALUATION.txt
+	echo "Commercial license required: https://paypal.me/amexsimoes/2000" >> qed-evaluation-dist/docs/README-EVALUATION.txt
+	echo "Contact: amexsimoes@gmail.com" >> qed-evaluation-dist/docs/README-EVALUATION.txt
+	tar czf qed-2.0.0-evaluation.tar.gz -C qed-evaluation-dist .
+	@echo "✅ Evaluation package created: qed-2.0.0-evaluation.tar.gz"
+
+# Clean evaluation build files
+clean-eval:
+	rm -f $(BINDIR)/$(TARGET)-eval
+	rm -rf qed-evaluation-dist qed-2.0.0-evaluation.tar.gz
+
 # Phony targets
-.PHONY: all debug clean install uninstall test deps help version package
+.PHONY: all debug clean install uninstall test deps help version package eval eval-package clean-eval

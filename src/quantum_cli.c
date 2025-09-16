@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <getopt.h>
 #include "../include/quantum_encryption.h"
+#include "../include/quantum_evaluation.h"
 
 static void print_usage(const char *program_name) {
     printf("Quantum Encryption Device (QED) v%s\n", QED_VERSION);
@@ -238,6 +239,12 @@ int qed_cli_main(int argc, char *argv[]) {
         }
     }
     
+    // Check evaluation license first
+    QED_EVAL_CHECK();
+    
+    // Show evaluation notice
+    QED_EVAL_NOTICE();
+    
     // Initialize device
     result = qed_init(&device);
     if (result != QED_SUCCESS) {
@@ -272,6 +279,9 @@ int qed_cli_main(int argc, char *argv[]) {
             return 1;
         }
         
+        // Check evaluation license before encryption
+        QED_EVAL_CHECK();
+        
         result = qed_encrypt_file(&device, key_id, encrypt_file, output_file);
         if (result == QED_SUCCESS) {
             printf("✅ Check the encrypted file: %s\n", output_file);
@@ -284,6 +294,9 @@ int qed_cli_main(int argc, char *argv[]) {
             qed_cleanup(&device);
             return 1;
         }
+        
+        // Check evaluation license before decryption
+        QED_EVAL_CHECK();
         
         result = qed_decrypt_file(&device, key_id, decrypt_file, output_file);
         if (result == QED_SUCCESS) {
