@@ -31,6 +31,7 @@ void qed_show_license_expired_message(void);
 time_t qed_parse_build_time(const char* build_time_str);
 
 // Evaluation license check macro - use in all major functions
+#ifdef QED_EVALUATION_VERSION
 #define QED_EVAL_CHECK() do { \
     if (!qed_check_evaluation_license()) { \
         qed_show_license_expired_message(); \
@@ -40,5 +41,10 @@ time_t qed_parse_build_time(const char* build_time_str);
 
 // Evaluation notice macro - show at startup
 #define QED_EVAL_NOTICE() qed_show_evaluation_notice()
+#else
+// Commercial version - no evaluation checks
+#define QED_EVAL_CHECK() do { } while(0)
+#define QED_EVAL_NOTICE() do { } while(0)
+#endif
 
 #endif // QUANTUM_EVALUATION_H
