@@ -1,0 +1,14 @@
+# GitHub Sponsors Configuration for Quantum Encryption Device (QED)
+# These are supported funding model platforms
+
+github: [SimoesCTT]
+patreon: # americo_simoes
+open_collective: # quantum-encryption-device
+ko_fi: # americosimoes
+tidelift: # npm/quantum-encryption-device
+community_bridge: # quantum-encryption-device
+liberapay: # americosimoes
+issuehunt: # SimoesCTT
+otechie: # americosimoes
+lfx_crowdfunding: # quantum-encryption-device
+custom: ["https://paypal.me/AmericoSimoes", "mailto:licensing@quantumencryption.dev"]
