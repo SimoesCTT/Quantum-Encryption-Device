@@ -201,10 +201,12 @@ QED is available under different licensing models:
 Support the development of QED:
 
 [![Sponsor](https://img.shields.io/badge/GitHub-Sponsors-pink.svg)](https://github.com/sponsors/SimoesCTT)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-blue.svg)](https://paypal.me/amexsimoes)
 
 - ⭐ **Star this repository**
-- 💝 **GitHub Sponsors** - Monthly contributions
-- 💰 **One-time donations** - Support specific features
+- 💝 **GitHub Sponsors** - Monthly contributions  
+- 💰 **PayPal Donations** - [paypal.me/amexsimoes](https://paypal.me/amexsimoes)
+- 💳 **One-time support** - Support specific features
 - 🔄 **Contribute** - Submit pull requests
 - 🐛 **Report bugs** - Help improve stability
 
